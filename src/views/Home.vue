@@ -1,12 +1,30 @@
 <template>
+<div>
   <div id="highlights-container">
-    <img id="website-logo" :src="require(`@/assets/${images[imageCounter]}`)" :key="images[imageCounter]"/>
+    <transition-group name="fade">
+      <img id="website-logo" :src="images[imageCounter]" :key="images[imageCounter]"/>
+    </transition-group>
     <a id="previous-icon" @click="previousClick">&#10094;</a>
     <a id="next-icon" @click="nextClick">&#10095;</a>
   </div>
+  <div id="fresh-card" data-aos="fade-right">
+    <div class="title-container">
+      <h1>FRESH</h1>
+    </div>
+  </div>
+  <div id="pairing-card" data-aos="fade-left">
+    <div class="title-container">
+      <h1>PAIRING</h1>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
+import image1 from '../assets/image1.jpg'
+import image2 from '../assets/image2.jpg'
+import image3 from '../assets/image3.jpg'
+import image4 from '../assets/image4.jpg'
 
 export default {
   name: 'home',
@@ -15,10 +33,10 @@ export default {
     return {
       imageCounter: 0,
       images: [
-        "image1.jpg",
-        "image2.jpg",
-        "image3.jpg",
-        "image4.jpg"
+        image1,
+        image2,
+        image3,
+        image4
       ]
     }
   },
@@ -32,12 +50,6 @@ export default {
       if (this.imageCounter === 3) return
       else this.imageCounter++;
     }
-  },
-
-  computed: {
-    selectedImage() {
-      return this.images[this.imageCounter];
-    }
   }
 }
 </script>
@@ -46,8 +58,7 @@ export default {
   #highlights-container {
     margin: 10px auto;
     height: 400px;
-    width: 50%;
-    border:  1px solid black;
+    width: 700px;
     position: relative;
 
     img {
@@ -78,5 +89,43 @@ export default {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  #fresh-card {
+    border-radius: 3px;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    left: 200px;
+    margin: 150px 0px;
+    background-image: url('../assets/fresh.jpg');
+    background-size: cover;
+
+    h1{
+      color: white;
+      font-size: 4em;
+    }
+  }
+
+  #pairing-card {
+    border-radius: 3px;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    right: 200px;
+    margin: 150px 0px;
+    background-image: url('../assets/pairing.jpg');
+    background-size: cover;
+
+    h1{
+      color: white;
+      font-size: 4em;
+    }
+  }
+
+  .title-container{
+    height: 100%;
+    width: 100%;
+    margin: 110px auto;
   }
 </style>
