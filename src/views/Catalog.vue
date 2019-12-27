@@ -32,6 +32,18 @@
 
   <a id="sort-button" @click="showSort = !showSort">SORT</a>
   <a id="filter-button" @click="showFilter = !showFilter">FILTER</a>
+
+  <div id="cart-container" v-show="showCart">
+    <h2>YOUR CART:</h2>
+    <div v-for="item in cart" :key="item.name" class="cart-item" data-aos="fade-up">
+        <img :src="`${item.image}`">
+        <h5>{{ item.name }}</h5>
+        <h5>{{ item.price }} €</h5>
+    </div>
+    <div v-if="searchResults.length === 0">
+      <h1>NO RES</h1>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -193,15 +205,52 @@ export default {
 
   #cart-button {
     position: fixed;
-    right: 20px;
-    top: 20px;
+    right: calc(100% - 50% - 20px);
+    bottom: 20px;
     border-bottom: 1px solid lightgray;
     padding: 5px 10px;
+    z-index: 100;
+    background-color: white;
 
     &:hover {
       cursor: pointer;
       border-bottom: 1px solid black;
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+  }
+
+  #cart-container {
+    background-color: white;
+    height: 400px;
+    width: 300px;
+    position: fixed;
+    right: calc(100% - 50% - 161px);
+    bottom: 20px;
+    z-index: 200;
+    overflow: scroll;
+    padding: 20px 10px;
+    border: 1px solid red;
+
+    .cart-item {
+      border: 1px solid lightgray;
+      border-radius: 3px;
+      width: 85%;
+      height: 40%;
+      text-align: left;
+      margin: 20px;
+
+      h5 {
+        margin: 0 15px;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      &:hover {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      }
     }
   }
 </style>
