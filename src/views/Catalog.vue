@@ -7,6 +7,9 @@
         <h5>{{ item.name }}</h5>
         <h5>{{ item.price }} €</h5>
     </div>
+    <div v-if="searchResults.length === 0">
+      <h1>NO RESULTS FOUND</h1>
+    </div>
   </div>
 
   <div v-show="showSort" id="sort-container">
