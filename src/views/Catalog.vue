@@ -1,5 +1,6 @@
 <template>
 <div>
+  <a id="cart-button" @click="showCart = !showCart">CART</a>
   <input id="search-bar" placeholder="search here" spellcheck="false" autocomplete="false" v-model="searchText" @input="search"> 
   <div id="card-container">
     <div v-for="item in searchResults" :key="item.name" class="beer-card" data-aos="fade-up">
@@ -45,6 +46,7 @@ export default {
       items,
       showSort: false,
       showFilter: false,
+      showCart: false,
       searchText: '',
       searchResults: items,
       cart: []
@@ -186,6 +188,20 @@ export default {
     &:hover{
       cursor: pointer;
       color: black;
+    }
+  }
+
+  #cart-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    border-bottom: 1px solid lightgray;
+    padding: 5px 10px;
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid black;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     }
   }
 </style>
