@@ -5,7 +5,10 @@
     <div v-for="item in searchResults" :key="item.name" class="beer-card" data-aos="fade-up">
         <img :src="`${item.image}`">
         <h5>{{ item.name }}</h5>
-        <h5>{{ item.price }} €</h5>
+        <div id="price-cart-container">
+          <h5>{{ item.price }} €</h5>
+          <h5 @click="addToCart(item)" id="add-button">+</h5>
+        </div>
     </div>
     <div v-if="searchResults.length === 0">
       <h1>NO RESULTS FOUND</h1>
@@ -43,7 +46,8 @@ export default {
       showSort: false,
       showFilter: false,
       searchText: '',
-      searchResults: items
+      searchResults: items,
+      cart: []
     }
   },
   methods: {
@@ -57,6 +61,9 @@ export default {
     },
     search() {
       this.searchResults = this.items.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
+    },
+    addToCart(item) {
+      this.cart.push(item);
     }
   }
 }
@@ -165,6 +172,20 @@ export default {
     &:focus{
       border-bottom: 1px solid black;
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+  }
+
+  #price-cart-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #add-button {
+    color: rgb(179, 178, 178);
+
+    &:hover{
+      cursor: pointer;
+      color: black;
     }
   }
 </style>
