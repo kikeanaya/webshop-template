@@ -2,7 +2,6 @@
 <div id="header-container">
   <div id="top-container">
     <h2>FREE SHIPPING ON ORDERS OVER 40 €</h2>
-    <input placeholder="search here" spellcheck="false" autocomplete="false">
   </div>
   <img id="website-logo" src="../assets/logo.png"/>
   <div id="nav">
@@ -44,14 +43,6 @@ export default {
     font-size: 0.7em;
     font-weight: 100;
     margin: 0px;
-  }
-
-  input {
-    width: 200px;
-    padding: 0px 10px;
-    border: 0px;
-    border-bottom: 1px solid lightgray;
-    outline: none;
   }
 }
 

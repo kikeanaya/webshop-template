@@ -1,8 +1,9 @@
 <template>
-<div id="catalog-container">
+<div>
+  <input id="search-bar" placeholder="search here" spellcheck="false" autocomplete="false" v-model="searchText" @input="search"> 
   <div id="card-container">
-    <div v-for="item in items" :key="item.name" class="beer-card" data-aos="fade-up">
-        <img :src="item.image">
+    <div v-for="item in searchResults" :key="item.name" class="beer-card" data-aos="fade-up">
+        <img :src="`${item.image}`">
         <h5>{{ item.name }}</h5>
         <h5>{{ item.price }} €</h5>
     </div>
@@ -37,7 +38,9 @@ export default {
     return {
       items,
       showSort: false,
-      showFilter: false
+      showFilter: false,
+      searchText: '',
+      searchResults: items
     }
   },
   methods: {
@@ -48,6 +51,9 @@ export default {
     sortByName(mode) {
       if (mode === 'UP') this.items.sort((a, b) => b.name - a.name);
       else if (mode === 'DOWN') this.items.sort((a, b) => a.name - b.name);
+    },
+    search() {
+      this.searchResults = this.items.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));
     }
   }
 }
@@ -78,7 +84,7 @@ export default {
 
   #card-container {
     width: 80%;
-    margin: 30px auto;
+    margin: 0px auto;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -141,6 +147,21 @@ export default {
   .sort-button {
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  #search-bar {
+    width: 150px;
+    font-size: 0.8em;
+    padding: 10px 10px;
+    border: 0px;
+    border-bottom: 1px solid lightgray;
+    outline: none;
+    margin: 10px 0px 0px 0px;
+
+    &:focus{
+      border-bottom: 1px solid black;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     }
   }
 </style>
