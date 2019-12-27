@@ -1,57 +1,36 @@
 <template>
+<div id="catalog-container">
   <div id="card-container">
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer1.png">
-        <h5>OTHER HALF GINGERBREAD</h5>
-        <h5>9 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer2.png">
-        <h5>OTHER HALF FLORETS</h5>
-        <h5>6 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer3.png">
-        <h5>OTHER HALF BALACLAVA</h5>
-        <h5>8 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer4.png">
-        <h5>OTHER HALF HOP SHOWERS</h5>
-        <h5>9 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer5.png">
-        <h5>OTHER HALF CREAM ON THE INSIDE</h5>
-        <h5>7 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer6.png">
-        <h5>OTHER HALF GREEN DIAMONDS</h5>
-        <h5>6 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer7.png">
-        <h5>OTHER HALF COBBLER JAMS</h5>
-        <h5>6 €</h5>
-    </div>
-    <div class="beer-card" data-aos="fade-up">
-        <img src="../assets/beer8.png">
-        <h5>OTHER HALF MYLAR BAGS</h5>
-        <h5>8 €</h5>
+    <div v-for="item in items" :key="item.name" class="beer-card" data-aos="fade-up">
+        <img :src="item.image">
+        <h5>{{ item.name }}</h5>
+        <h5>{{ item.price }} €</h5>
     </div>
   </div>
+  <div v-show="showSort" id="sort-container">
+
+  </div>
+  <div v-show="showFilter" id="filter-container">
+
+  </div>
+  <a id="sort-button" @click="showSort = !showSort">SORT</a>
+  <a id="filter-button" @click="showFilter = !showFilter">FILTER</a>
+</div>
 </template>
 
 <script>
+import items from "../assets/items.json";
+
 export default {
   name: 'catalog',
 
   data() {
     return {
-
+      items,
+      showSort: false,
+      showFilter: false
     }
-  },
+  }
 }
 </script>
 
@@ -71,6 +50,11 @@ export default {
     img {
       width: 100%;
     }
+
+    &:hover {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
   }
 
   #card-container {
@@ -79,5 +63,57 @@ export default {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  }
+
+  #sort-button {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    border-bottom: 1px solid lightgray;
+    font-size: 0.8em;
+    padding: 0px 10px;
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid black;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+  }
+
+  #filter-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    border-bottom: 1px solid lightgray;
+    font-size: 0.8em;
+    padding: 0px 10px;
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid black;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+  }
+
+  #sort-container {
+    width: 100px;
+    height: 100px;
+    z-index: 30;
+    background-color: white;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    left: 30px;
+    bottom: 70px;
+  }
+
+  #filter-container {
+    width: 100px;
+    height: 100px;
+    z-index: 30;
+    background-color: white;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    position: fixed;
+    right: 30px;
+    bottom: 70px;
   }
 </style>

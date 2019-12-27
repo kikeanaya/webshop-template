@@ -1,0 +1,52 @@
+[
+    {
+        "image": "../assets/beer1.png",
+        "name": "OTHER HALF GINGERBREAD",
+        "price": 9
+    },
+    {
+        "image": "../assets/beer2.png",
+        "name": "OTHER HALF FLORETS",
+        "price": 6
+    },
+    {
+        "image": "../assets/beer3.png",
+        "name": "OTHER HALF BALACLAVA",
+        "price": 8
+    },
+    {
+        "image": "../assets/beer4.png",
+        "name": "OTHER HALF HOP SHOWERS",
+        "price": 9
+    },
+    {
+        "image": "../assets/beer5.png",
+        "name": "OTHER HALF CREAM ON THE INSIDE",
+        "price": 7
+    },
+    {
+        "image": "../assets/beer6.png",
+        "name": "OTHER HALF GREEN DIAMONDS",
+        "price": 6
+    },
+    {
+        "image": "../assets/beer7.png",
+        "name": "OTHER HALF COBBLER JAM",
+        "price": 7
+    },
+    {
+        "image": "../assets/beer8.png",
+        "name": "OTHER HALF MYLAR BAGS",
+        "price": 8
+    },
+    {
+        "image": "../assets/beer9.png",
+        "name": "OTHER HALF SPACE BROCCOLI",
+        "price": 9
+    },
+    {
+        "image": "../assets/beer10.png",
+        "name": "OTHER HALF AINT NOTHING NICE",
+        "price": 8
+    }
+]
