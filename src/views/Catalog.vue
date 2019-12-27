@@ -45,12 +45,12 @@ export default {
   },
   methods: {
     sortByPrice(mode) {
-      if (mode === 'UP') this.items.sort((a, b) => b.price - a.price);
-      else if (mode === 'DOWN') this.items.sort((a, b) => a.price - b.price);
+      if (mode === 'UP') this.searchResults.sort((a, b) => b.price - a.price);
+      else if (mode === 'DOWN') this.searchResults.sort((a, b) => a.price - b.price);
     },
     sortByName(mode) {
-      if (mode === 'UP') this.items.sort((a, b) => b.name - a.name);
-      else if (mode === 'DOWN') this.items.sort((a, b) => a.name - b.name);
+      if (mode === 'UP') this.searchResults.sort((a, b) => b.name - a.name);
+      else if (mode === 'DOWN') this.searchResults.sort((a, b) => a.name - b.name);
     },
     search() {
       this.searchResults = this.items.filter(item => item.name.toLowerCase().includes(this.searchText.toLowerCase()));

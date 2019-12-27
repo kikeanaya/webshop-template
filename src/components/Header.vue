@@ -5,16 +5,28 @@
   </div>
   <img id="website-logo" src="../assets/logo.png"/>
   <div id="nav">
-    <router-link to="/">HOME</router-link>
-    <router-link to="/catalog">ALL ITEMS</router-link>
-    <router-link to="/contact">CONTACT</router-link>
+    <router-link to="/" :class="{ active: homeSelected }">HOME</router-link>
+    <router-link to="/catalog" :class="{ active: catalogSelected }">ALL ITEMS</router-link>
+    <router-link to="/contact" :class="{ active: contactSelected }">CONTACT</router-link>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+
+  computed: {
+    homeSelected() {
+      return this.$route.name === 'home';
+    },
+    catalogSelected() {
+      return this.$route.name === 'catalog';
+    },
+    contactSelected() {
+      return this.$route.name === 'contact';
+    }
+  }
 }
 </script>
 
@@ -47,18 +59,21 @@ export default {
 }
 
 #nav {
-  height: 30px;
   width: 60%;
   margin: 0 auto;
   font-size: 0.9em;
-  padding-top: 20px;
+  padding: 20px 0px;
   display: flex;
   justify-content: space-evenly;
 
   a {
     font-weight: bold;
     text-decoration: none;
-    color: black;
+    color: rgb(152, 150, 150);
   }
+}
+  
+.active {
+  color: black !important;
 }
 </style>
