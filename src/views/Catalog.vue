@@ -7,12 +7,21 @@
         <h5>{{ item.price }} €</h5>
     </div>
   </div>
-  <div v-show="showSort" id="sort-container">
 
+  <div v-show="showSort" id="sort-container">
+    <p>PRICE: </p>
+    <p @click="sortByPrice('UP')" class="sort-button">HIGHER FIRST </p>
+    <p @click="sortByPrice('DOWN')" class="sort-button">LOWER FIRST</p>
+    <hr>
+    <p>NAME: </p>
+    <p @click="sortByName('UP')" class="sort-button">A TO Z</p>
+    <p @click="sortByName('DOWN')" class="sort-button">Z TO A</p>
   </div>
+
   <div v-show="showFilter" id="filter-container">
 
   </div>
+
   <a id="sort-button" @click="showSort = !showSort">SORT</a>
   <a id="filter-button" @click="showFilter = !showFilter">FILTER</a>
 </div>
@@ -29,6 +38,16 @@ export default {
       items,
       showSort: false,
       showFilter: false
+    }
+  },
+  methods: {
+    sortByPrice(mode) {
+      if (mode === 'UP') this.items.sort((a, b) => b.price - a.price);
+      else if (mode === 'DOWN') this.items.sort((a, b) => a.price - b.price);
+    },
+    sortByName(mode) {
+      if (mode === 'UP') this.items.sort((a, b) => b.name - a.name);
+      else if (mode === 'DOWN') this.items.sort((a, b) => a.name - b.name);
     }
   }
 }
@@ -97,13 +116,15 @@ export default {
 
   #sort-container {
     width: 100px;
-    height: 100px;
+    height: 175px;
     z-index: 30;
     background-color: white;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     position: fixed;
     left: 30px;
     bottom: 70px;
+    padding: 20px;
+    font-size: 0.7em;
   }
 
   #filter-container {
@@ -111,9 +132,15 @@ export default {
     height: 100px;
     z-index: 30;
     background-color: white;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     position: fixed;
     right: 30px;
     bottom: 70px;
+  }
+
+  .sort-button {
+    &:hover {
+      cursor: pointer;
+    }
   }
 </style>
