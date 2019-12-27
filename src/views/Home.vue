@@ -57,8 +57,7 @@ export default {
 <style lang="scss" scoped>
   #highlights-container {
     margin: 10px auto;
-    height: 400px;
-    width: 700px;
+    width: 45%;
     position: relative;
 
     img {
@@ -70,7 +69,7 @@ export default {
   #previous-icon {
     position: absolute;
     left: 10px;
-    top: 185px;
+    top: 195px;
     color: white;
     font-size: 2em;
 
@@ -82,7 +81,7 @@ export default {
   #next-icon {
     position: absolute;
     right: 10px;
-    top: 185px;
+    top: 195px;
     color: white;
     font-size: 2em;
 
