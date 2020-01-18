@@ -1,5 +1,6 @@
 <template>
 <div>
+  <notification v-if="showNotification" :beer="beerToShow" :notificationType="notificationType"></notification>
   <a id="cart-button" @click="showCart = !showCart">CART</a>
   <input id="search-bar" placeholder="search here" spellcheck="false" autocomplete="false" v-model="searchText" @input="search"> 
   <div id="card-container">
@@ -49,9 +50,14 @@
 
 <script>
 import items from "../assets/items.json";
+import notification from '../components/Notification'
 
 export default {
   name: 'catalog',
+
+  components: {
+    notification
+  },
 
   data() {
     return {
@@ -61,7 +67,10 @@ export default {
       showCart: false,
       searchText: '',
       searchResults: items,
-      cart: []
+      cart: [],
+      showNotification: false,
+      beerToShow: {},
+      notificationType: null
     }
   },
   methods: {
@@ -78,6 +87,9 @@ export default {
     },
     addToCart(item) {
       this.cart.push(item);
+      this.showNotification = true;
+      this.beerToShow = item;
+      this.notificationType = 'beerAdded';
     }
   }
 }
